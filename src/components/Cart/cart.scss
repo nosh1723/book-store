@@ -1,0 +1,10 @@
+.cart{
+    width: calc(100% / 2);
+    height: max-content;
+    position: absolute;
+    top: -40px;
+    right: 30px;
+    background-color: rgba($color: #000000, $alpha: .6);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+}
