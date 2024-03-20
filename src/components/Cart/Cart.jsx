@@ -1,14 +1,16 @@
 import React, { useContext } from 'react';
 import "./cart.scss"
 import { AppContext } from '../../context';
-import { pop } from '../../data/books';
+import { toast } from 'react-toastify';
 
 const Cart = (props) => {
     const context = useContext(AppContext)
 
-    const handleDelete = (id) => {
-        const result = props.data.filter(item => item.id !== id)
+    const handleDelete = (book) => {
+        const result = props.data.filter(item => item.id !== book.id)
+        props.setTotalCost(props.total - book.cost * book.quantity)
         props.setCartBook(result)
+        toast.success("Delete successfully!!")
     }
     return (
         <div>
@@ -40,7 +42,7 @@ const Cart = (props) => {
                                                 {/* <!-- Data --> */}
                                                 <p className='truncate'><strong>{book.title}</strong></p>
                                                 <p>{book.author}</p>
-                                                <button onClick={() => handleDelete(book.id)} type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                                                <button onClick={() => handleDelete(book)} type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
                                                     title="Remove item">
 
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">

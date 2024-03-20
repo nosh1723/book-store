@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Header from '../components/Header';
 import Books from '../components/Books/Books';
 import books from '../data/books';
+import { AppContext } from '../context';
 
 const Home = () => {
-    const [book, setBook] = useState([...books])
-    const [searchData, setSearchData] = useState(book);
+    const context = useContext(AppContext)
     return (
         <div>
-            <Header book={book} setSearchData={setSearchData} />
-            <Books book={searchData} />
+            <Books book={context.searchData} />
         </div>
     );
 };
